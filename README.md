@@ -15,8 +15,11 @@ Develop a task management backend application using Nest.js and TypeORM
 [ ] Delete a task
 
 *Additional Considerations*
+
 [ ] Tasks have to be stored persistently in a Database.
+
 [ ] Optional implementation of JWT.
+
 [ ] Optional implementation of unit tests.
 
 *Database EER Diagram*
