@@ -20,6 +20,7 @@ import { Task } from './tasks/entities/task.entity'; //import Task entity
         username: process.env.DB_USERNAME as any,
         password: process.env.DB_PASSWORD as any,
         database: process.env.DB_NAME as any,
+        entities: [User, Task],
       }),
     }),
     UsersModule,
