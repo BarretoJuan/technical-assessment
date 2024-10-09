@@ -52,8 +52,10 @@ export class AuthService {
     }
 
     // Check if password is too short
-    if (givenPassword.length < 8) {
-      throw new UnauthorizedException('Password must be at least 8 characters');
+    if (givenPassword.length < 8 || givenPassword.length > 255) {
+      throw new UnauthorizedException(
+        'Password must be between 8 and 255 characters',
+      );
     }
     console.log('aaaa' + password);
     return this.userService.create({

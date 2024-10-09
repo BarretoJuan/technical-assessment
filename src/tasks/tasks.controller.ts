@@ -20,11 +20,6 @@ import { AuthGuard } from '../auth/auth.guard';
 export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
 
-  @Post()
-  create(@Body() createTaskDto: CreateTaskDto) {
-    return this.tasksService.create(createTaskDto);
-  }
-
   @Get('find-tasks')
   findAll() {
     return this.tasksService.findAll();
@@ -34,8 +29,17 @@ export class TasksController {
   @Post('find-tasks-by-username')
   findTaskByUsername(@Body() body: FindUserDto, @Request() req) {
     const jwt_sub = req.user.sub;
+    console.log('BBB ', jwt_sub);
 
     return this.tasksService.findTaskByUsername(body.username, jwt_sub);
+  }
+
+  @UseGuards(AuthGuard)
+  @Post('create')
+  createTask(@Body() createTaskDto: CreateTaskDto, @Request() req) {
+    const jwt_sub = req.user.sub;
+
+    return this.tasksService.createTask(createTaskDto, jwt_sub);
   }
 
   // @Get(':id')

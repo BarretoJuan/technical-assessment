@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Injectable,
   NotAcceptableException,
   UnauthorizedException,
@@ -20,8 +21,31 @@ export class TasksService {
     private usersRepository: Repository<User>,
   ) {}
 
-  create(createTaskDto: CreateTaskDto) {
-    return 'This action adds a new task';
+  createTask(createTaskDto: CreateTaskDto, jwt_sub: string) {
+    if (!createTaskDto.title) {
+      throw new NotAcceptableException('Ingrese un título');
+    }
+    if (createTaskDto.title.length < 4 || createTaskDto.title.length > 45) {
+      throw new NotAcceptableException(
+        'El título debe tener entre 4 y 45 caracteres',
+      );
+    }
+    if (createTaskDto.description && createTaskDto.description.length > 500) {
+      throw new NotAcceptableException(
+        'La descripción no puede tener más de 500 caracteres',
+      );
+    }
+
+    try {
+      this.tasksRepository.insert({
+        ...createTaskDto,
+        userId: parseInt(jwt_sub),
+      });
+    } catch {
+      throw new BadRequestException('Error creando la tarea');
+    }
+
+    return 'Tarea creada satisfactoriamente';
   }
 
   findAll() {
@@ -33,11 +57,7 @@ export class TasksService {
       select: ['id'],
       where: { username: username },
     });
-    console.log('aaa', user);
     const userId = user?.id;
-    console.log('user id ', userId);
-    console.log('sub ', jwt_sub);
-
     if (!userId) {
       throw new UnauthorizedException('User not found');
     }

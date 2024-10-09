@@ -5,7 +5,7 @@ Develop a task management backend application using Nest.js and TypeORM
 **Required Endpoints**
 
 <ul>
-<li>[ ] Create a new task</li>
+<li>[x] Create a new task</li>
 <li>[x] Show all tasks (optional filter)</li>
 <li>[x] Show all tasks of a given username</li>
 <li>[ ] Change a task status between completed and pending</li>
@@ -56,4 +56,9 @@ Develop a task management backend application using Nest.js and TypeORM
   Used to get a list of all the tasks stored in the database. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`.
 
 - **2.2 tasks/find-tasks-by-username (POST) (PROTECTED)**
-  Used to get a list of all the tasks related to a given username. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`. This endpoint will only return you the list of tasks of the username if the given JWT corresponds to the user being consulted.
+  Used to get a list of all the tasks related to a given `username`. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`. This endpoint will only return you the list of tasks of the username if the given JWT corresponds to the user being consulted.
+
+- **2.3 tasks/create (POST) (PROTECTED)**
+  Used to create a new task for the logged in user. requires a `title` field and a `description` field, both strings.
+  `title` has to be between 4 and 45 characters.
+  `description` has to be shorter than 501 characters.
