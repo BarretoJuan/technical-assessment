@@ -68,7 +68,15 @@ Develop a task management backend application using Nest.js and TypeORM
   Returns a Json Web Token with a duration of _six hours_ used to access protected endpoints.
 
 - **1.3: auth/me (GET) (PROTECTED)**
-  Used to get the logged-in user data. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`.
+  **Method**: GET (PROTECTED)
+
+  **CURL**:
+
+  ```
+  curl -X GET http://localhost:3000/auth/me -H "Authorization: Bearer <yourJWT>"
+  ```
+
+  **Description**: Used to get the logged-in user data. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`.
 
 **2. Tasks Controller**
 
