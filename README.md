@@ -40,9 +40,12 @@ Develop a task management backend application using Nest.js and TypeORM
 **1. Auth Controller**
 
 - **1.1: auth/signup (POST)**
-  Used to sign up new users, requires a `username` field and a `password` field, both strings.
-  `username` has to be between 4 and 45 characters long.
-  `password` has to be longer than 8 characters, shorter than 255.
+  **Method**:POST
+  **CURL**: curl -X POST http://localhost:3000/auth/signup -H "Content-Type: application/json" -d "{\"username\": \"<yourUsername>\", \"password\": \"<yourPassword>\"}"
+  **Description**: Used to sign up new users, requires a `username` field and a `password` field, both strings.
+
+  - `username` has to be between 4 and 45 characters long.
+  - `password` has to be longer than 8 characters, shorter than 255.
 
 - **1.2: auth/signin (POST)**
   Used to sign in a user, requires a `username` field and a `password` field, both strings.
