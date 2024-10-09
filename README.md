@@ -103,18 +103,69 @@ Develop a task management backend application using Nest.js and TypeORM
   curl -X POST http://localhost:3000/tasks/find-tasks-by-username -H "Authorization: Bearer <yourJWT>" -H "Content-Type: application/json" -d "{\"username\": \"<yourUsername>\"}"
   ```
 
-  **Description**: Used to get a list of all the tasks related to a given `username`. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`. This endpoint will only return you the list of tasks of the username if the given JWT corresponds to the user being consulted.
+  **Description**: Used to get a list of all the tasks related to a given `username`. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`.
 
-- **2.3 tasks/create (POST) (PROTECTED)**
-  Used to create a new task for the logged in user. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`. requires a `title` field and a `description` field, both strings
-  `title` has to be between 4 and 45 characters.
-  `description` has to be shorter than 501 characters.
+  This endpoint will only return you the list of tasks of the username if the given JWT corresponds to the user being consulted.
 
-- **2.4 tasks/delete (POST) (PROTECTED)**
-  Used to delete a task. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`. requires an `id` field, corresponding to the task ID. This endpoint will only allow you to delete the selected task if the selected task belongs to the user id of the given JWT.
+- **2.3 tasks/create**
 
-- **2.5 tasks/change-status (POST) (PROTECTED)**
-  Used to change the status of a task, changing between "Completada" and "Pendiente". Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`. requires an `id` field, corresponding to the task ID. This endpoint will only allow you to edit the selected task if the selected task belongs to the user id of the given JWT.
+  **Method**: POST (PROTECTED)
+
+  **CURL**:
+
+  ```
+  curl -X POST http://localhost:3000/tasks/create -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsInVzZXJuYW1lIjoiSmFuZSBEb2UiLCJpYXQiOjE3Mjg1MDQ2NDIsImV4cCI6MTcyODUyNjI0Mn0.nacuvbg-6r6X3GCa1UqvfRqUM0cyVv3_5HOaVQi0vAw" -H "Content-Type: application/json" -d "{\"title\": \"Test6\", \"description\": \"testDescription\"}"
+  ```
+
+  **Description**: Used to create a new task for the logged in user. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`. requires a `title` field and a `description` field, both strings
+
+  - `title` has to be between 4 and 45 characters.
+  - `description` has to be shorter than 501 characters.
+
+- **2.4 tasks/delete**
+
+  **Method**: POST (PROTECTED)
+
+  **CURL**:
+
+  ```
+  curl -X POST http://localhost:3000/tasks/delete -H "Authorization: Bearer <yourJWT>" -H "Content-Type: application/json" -d "{\"id\": \"<taskId>\"}"
+  ```
+
+  **Description**: Used to delete a task. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`.
+
+  requires an `id` field, corresponding to the task ID.
+
+  This endpoint will only allow you to delete the selected task if the selected task belongs to the user id of the given JWT.
+
+- **2.5 tasks/change-status**
+
+  **Method**: POST (PROTECTED)
+
+  **CURL**:
+
+  ```
+  curl -X POST http://localhost:3000/tasks/change-status -H "Authorization: Bearer <yourJWT>" -H "Content-Type: application/json" -d "{\"id\": \"<taskId>\"}"
+  ```
+
+  **Description**: Used to change the status of a task, changing between "Completada" and "Pendiente". Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`.
+
+  Requires an `id` field, corresponding to the task ID.
+
+  This endpoint will only allow you to edit the selected task if the selected task belongs to the user id of the given JWT.
 
 - **2.6 tasks/update (POST) (PROTECTED)**
-  Used to edit the title and description of a task. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`. requires an `id`, `title`, and `description` fields. This endpoint will only allow you to edit the selected task if the selected task belongs to the user id of the given JWT.
+
+  **Method**: POST (PROTECTED)
+
+  **CURL**:
+
+  ```
+  curl -X POST http://localhost:3000/tasks/update -H "Authorization: Bearer <yourJWT>" -H "Content-Type: application/json" -d "{\"id\":\"<taskId>\",\"title\": \"<yourTitle>\", \"description\":\"<yourDescription>\"}"
+  ```
+
+  Used to edit the title and description of a task. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`.
+
+  requires an `id`, `title`, and `description` fields.
+
+  This endpoint will only allow you to edit the selected task if the selected task belongs to the user id of the given JWT.
