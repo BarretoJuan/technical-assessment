@@ -13,6 +13,7 @@ import {
 import { TasksService } from './tasks.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
+import { FindTaskDto } from './dto/find-task-dto';
 import { FindUserDto } from 'users/dto/find-user.dto';
 import { AuthGuard } from '../auth/auth.guard';
 
@@ -20,6 +21,7 @@ import { AuthGuard } from '../auth/auth.guard';
 export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
 
+  @UseGuards(AuthGuard)
   @Get('find-tasks')
   findAll() {
     return this.tasksService.findAll();
@@ -40,6 +42,13 @@ export class TasksController {
     const jwt_sub = req.user.sub;
 
     return this.tasksService.createTask(createTaskDto, jwt_sub);
+  }
+
+  @UseGuards(AuthGuard)
+  @Post('delete')
+  deleteTask(@Body() taskId: FindTaskDto, @Request() req) {
+    const jwt_sub = req.user.sub;
+    return this.tasksService.deleteTask(taskId, jwt_sub);
   }
 
   // @Get(':id')

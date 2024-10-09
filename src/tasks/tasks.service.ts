@@ -7,10 +7,11 @@ import {
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { Task } from './entities/task.entity';
-import { Repository } from 'typeorm';
+import { FindCursor, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../users/entities/user.entity';
 import { AuthController } from 'auth/auth.controller';
+import { FindTaskDto } from './dto/find-task-dto';
 
 @Injectable()
 export class TasksService {
@@ -79,7 +80,35 @@ export class TasksService {
     return `2This action updates a #${id} task`;
   }
 
-  remove(id: number) {
-    return `3This action removes a #${id} task`;
+  async deleteTask(taskId: FindTaskDto, jwt_sub: string) {
+    let taskIdInt;
+    try {
+      taskIdInt = parseInt(taskId.id);
+    } catch {
+      throw new BadRequestException(
+        'El identificador de la tarea debe ser un numero',
+      );
+    }
+
+    if (!taskIdInt) {
+      throw new BadRequestException('Seleccione una tarea');
+    }
+
+    const task = await this.tasksRepository.findOne({
+      where: { id: taskIdInt },
+    });
+
+    if (!task) {
+      throw new UnauthorizedException('Tarea no encontrada');
+    }
+
+    if (task.userId != parseInt(jwt_sub)) {
+      throw new UnauthorizedException(
+        'Usted no está autorizado para eliminar esta tarea',
+      );
+    }
+
+    this.tasksRepository.delete(taskIdInt);
+    return 'Tarea eliminada satisfactoriamente';
   }
 }
