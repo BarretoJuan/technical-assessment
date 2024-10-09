@@ -55,8 +55,17 @@ Develop a task management backend application using Nest.js and TypeORM
   - `password` has to be longer than 8 characters, shorter than 255.
 
 - **1.2: auth/signin (POST)**
-  Used to sign in a user, requires a `username` field and a `password` field, both strings.
-  it returns a Json Web Token with a duration of _six hours_ used to access protected endpoints.
+  **Method**: POST
+
+  **CURL**:
+
+  ```
+  curl -X POST http://localhost:3000/auth/signin -H "Content-Type: application/json" -d "{\"username\": \"<yourUsername>\", \"password\": \"<yourPassword>\"}"
+  ```
+
+  **Description**: Used to sign in a user, requires a `username` field and a `password` field, both strings.
+
+  Returns a Json Web Token with a duration of _six hours_ used to access protected endpoints.
 
 - **1.3: auth/me (GET) (PROTECTED)**
   Used to get the logged-in user data. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`.
