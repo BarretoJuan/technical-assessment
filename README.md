@@ -29,10 +29,11 @@ Develop a task management backend application using Nest.js and TypeORM
 
 1. Create a mysql database called "tasks"
 2. Download the repository and unzip it inside a folder
-3. Run `npm i` in the repository folder
-4. Run `npm run migration:generate --name=migration1` to generate a migration from the project database schema to be run on the database server
-5. Run `npm run migration:run` to run the migration and create the necessary tables on the database server.
-6. Run `npm run start` to start the nest.js server
+3. Rename the .env.example file to .env, and fill the needed environment variables
+4. Run `npm i` in the repository folder
+5. Run `npm run migration:generate --name=migration1` to generate a migration from the project database schema to be run on the database server
+6. Run `npm run migration:run` to run the migration and create the necessary tables on the database server.
+7. Run `npm run start` to start the nest.js server
 
 **Endpoints**
 
