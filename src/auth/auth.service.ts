@@ -20,13 +20,13 @@ export class AuthService {
     const user = await this.userService.findOne(username);
 
     if (!user) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('Usuario o contraseña incorrectos');
     }
 
     const compare = await bcrypt.compare(userPassword, user?.password);
 
     if (!compare) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('Usuario o contraseña incorrectos');
     }
     const payload = { sub: user.id, username: user.username };
     return {

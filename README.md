@@ -1,8 +1,8 @@
-_Technical Assessment_
+**Technical Assessment**
 
 Develop a task management backend application using Nest.js and TypeORM
 
-_Required Endpoints_
+**Required Endpoints**
 
 [ ] Create a new task
 
@@ -14,19 +14,19 @@ _Required Endpoints_
 
 [ ] Delete a task
 
-_Additional Considerations_
+**Additional Considerations**
 
-[ ] Tasks have to be stored persistently in a Database.
+[x] Tasks have to be stored persistently in a Database.
 
-[ ] Optional implementation of JWT.
+[x] Optional implementation of JWT.
 
 [ ] Optional implementation of unit tests.
 
-_Database EER Diagram_
+**Database EER Diagram**
 
 ![test](https://github.com/user-attachments/assets/2da15258-ca74-4f1b-9485-996e666a10a6)
 
-_Installation_
+**Installation**
 
 1. Create a mysql database called "tasks"
 2. Download the repository and unzip it inside a folder
@@ -34,3 +34,20 @@ _Installation_
 4. Run `npm run migration:generate --name=migration1` to generate a migration from the project database schema to be run on the database server
 5. Run `npm run migration:run` to run the migration and create the necessary tables on the database server.
 6. Run `npm run start` to start the nest.js server
+
+**Endpoints**
+
+**1. Auth Controller**
+
+**1.1: auth/signup (POST)**
+Used to sign up new users, requires a `username` field and a `password` field, both strings
+`username` has to be between 4 and 45 characters long
+`password` has to be longer than 8 characters, shorter than 255
+
+**1.2: auth/signin (POST)**
+Used to sign in a user, requires a `username` field and a `password` field, both strings
+it returns a Json Web Token with a duration of _six hours_ used to access protected endpoints
+
+**1.3: me (GET) (PROTECTED)**
+Used to get the logged-in user data. Providing a JWT on the `Authorization header`, with the
+following header-value structure: `Authorization: bearer [JWT]`
