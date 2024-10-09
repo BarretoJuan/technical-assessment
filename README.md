@@ -43,9 +43,11 @@ Develop a task management backend application using Nest.js and TypeORM
 
   **Method**: POST
 
-  **CURL**: 
-  
-  ```curl -X POST http://localhost:3000/auth/signup -H "Content-Type: application/json" -d "{\"username\": \"<yourUsername>\", \"password\": \"<yourPassword>\"}"```
+  **CURL**:
+
+  ```
+  curl -X POST http://localhost:3000/auth/signup -H "Content-Type: application/json" -d "{\"username\": \"<yourUsername>\", \"password\": \"<yourPassword>\"}"
+  ```
 
   **Description**: Used to sign up new users, requires a `username` field and a `password` field, both strings.
 
