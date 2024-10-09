@@ -8,8 +8,8 @@ Develop a task management backend application using Nest.js and TypeORM
 <li>[x] Create a new task</li>
 <li>[x] Show all tasks (optional filter)</li>
 <li>[x] Show all tasks of a given username</li>
-<li>[ ] Change a task status between completed and pending</li>
-<li>[ ] Update a task's details</li>
+<li>[x] Change a task status between completed and pending</li>
+<li>[x] Update a task's details</li>
 <li>[x] Delete a task</li>
 </ul>
 
@@ -68,3 +68,6 @@ Develop a task management backend application using Nest.js and TypeORM
 
 - **2.5 tasks/change-status (POST) (PROTECTED)**
   Used to change the status of a task, changing between "Completada" and "Pendiente". Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`. requires an `id` field, corresponding to the task ID. This endpoint will only allow you to edit the selected task if the selected task belongs to the user id of the given JWT.
+
+- **2.6 tasks/update (POST) (PROTECTED)**
+  Used to edit the title and description of a task. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`. requires an `id`, `title`, and `description` fields. This endpoint will only allow you to edit the selected task if the selected task belongs to the user id of the given JWT.

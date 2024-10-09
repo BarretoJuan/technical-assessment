@@ -148,4 +148,52 @@ export class TasksService {
       return 'Estado de la tarea cambiado satisfactoriamente a pendiente';
     }
   }
+
+  async updateTask(task: UpdateTaskDto, jwt_sub: string) {
+    let taskIdInt;
+    try {
+      taskIdInt = parseInt(task.id);
+    } catch {
+      throw new BadRequestException(
+        'El identificador de la tarea debe ser un numero',
+      );
+    }
+
+    if (!taskIdInt) {
+      throw new BadRequestException('Seleccione una tarea');
+    }
+
+    const taskEntity = await this.tasksRepository.findOne({
+      where: { id: taskIdInt },
+    });
+
+    if (!taskEntity) {
+      throw new UnauthorizedException('Tarea no encontrada');
+    }
+
+    if (taskEntity.userId != parseInt(jwt_sub)) {
+      throw new UnauthorizedException(
+        'Usted no está autorizado para cambiar el estado de esta tarea',
+      );
+    }
+
+    if (task.title.length < 4 || task.title.length > 45) {
+      throw new NotAcceptableException(
+        'El título debe tener entre 4 y 45 caracteres',
+      );
+    }
+
+    if (task.description && task.description.length > 500) {
+      throw new NotAcceptableException(
+        'La descripción no puede tener más de 500 caracteres',
+      );
+    }
+
+    this.tasksRepository.update(taskIdInt, {
+      title: task.title,
+      description: task.description,
+    });
+
+    return 'Tarea actualizada satisfactoriamente';
+  }
 }
