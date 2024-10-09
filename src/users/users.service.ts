@@ -12,17 +12,16 @@ export class UsersService {
     private userRepository: Repository<User>,
   ) {}
 
-
   create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+    return this.userRepository.insert(createUserDto);
   }
 
   findAll() {
     return this.userRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  findOne(username: string) {
+    return this.userRepository.findOne({ where: { username: username } });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

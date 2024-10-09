@@ -8,8 +8,8 @@ export class User {
 
   @Column('varchar', { length: 45 })
   username: string;
-x
-  @Column('varchar', {length: 255})
+
+  @Column('varchar', { length: 255, default: '123456' })
   password: string;
 
   @OneToMany((type) => Task, (task) => task.userId)

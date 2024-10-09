@@ -9,6 +9,7 @@ import 'dotenv/config';
 import { User } from './users/entities/user.entity'; //importt User entity
 import { Task } from './tasks/entities/task.entity'; //import Task entity
 // import { dataSourceOptions } from 'db/data-source'; //import dataSourceOptions
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { Task } from './tasks/entities/task.entity'; //import Task entity
     }),
     UsersModule,
     TasksModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
