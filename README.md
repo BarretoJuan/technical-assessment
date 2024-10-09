@@ -6,7 +6,8 @@ Develop a task management backend application using Nest.js and TypeORM
 
 <ul>
 <li>[ ] Create a new task</li>
-<li>[ ] Show all tasks (optional filter)</li>
+<li>[x] Show all tasks (optional filter)</li>
+<li>[x] Show all tasks of a given username</li>
 <li>[ ] Change a task status between completed and pending</li>
 <li>[ ] Update a task's details</li>
 <li>[ ] Delete a task</li>
@@ -48,3 +49,11 @@ Develop a task management backend application using Nest.js and TypeORM
 
 - **1.3: auth/me (GET) (PROTECTED)**
   Used to get the logged-in user data. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`.
+
+**2. Tasks Controller**
+
+- **2.1 tasks/find-tasks (GET) (PROTECTED)**
+  Used to get a list of all the tasks stored in the database. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`.
+
+- **2.2 tasks/find-tasks-by-username (POST) (PROTECTED)**
+  Used to get a list of all the tasks related to a given username. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`. This endpoint will only return you the list of tasks of the username if the given JWT corresponds to the user being consulted.
