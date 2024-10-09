@@ -4,23 +4,21 @@ Develop a task management backend application using Nest.js and TypeORM
 
 **Required Endpoints**
 
-[ ] Create a new task
-
-[ ] Show all tasks (optional filter)
-
-[ ] Change a task status between completed and pending
-
-[ ] Update a task's details
-
-[ ] Delete a task
+<ul>
+<li>[ ] Create a new task</li>
+<li>[ ] Show all tasks (optional filter)</li>
+<li>[ ] Change a task status between completed and pending</li>
+<li>[ ] Update a task's details</li>
+<li>[ ] Delete a task</li>
+</ul>
 
 **Additional Considerations**
 
-[x] Tasks have to be stored persistently in a Database.
-
-[x] Optional implementation of JWT.
-
-[ ] Optional implementation of unit tests.
+<ul>
+<li>[x] Tasks have to be stored persistently in a Database.</li>
+<li>[x] Optional implementation of JWT.</li>
+<li>[ ] Optional implementation of unit tests.</li>
+</ul>
 
 **Database EER Diagram**
 
@@ -39,15 +37,14 @@ Develop a task management backend application using Nest.js and TypeORM
 
 **1. Auth Controller**
 
-**1.1: auth/signup (POST)**
-Used to sign up new users, requires a `username` field and a `password` field, both strings
-`username` has to be between 4 and 45 characters long
-`password` has to be longer than 8 characters, shorter than 255
+- **1.1: auth/signup (POST)**
+  Used to sign up new users, requires a `username` field and a `password` field, both strings.
+  `username` has to be between 4 and 45 characters long.
+  `password` has to be longer than 8 characters, shorter than 255.
 
-**1.2: auth/signin (POST)**
-Used to sign in a user, requires a `username` field and a `password` field, both strings
-it returns a Json Web Token with a duration of _six hours_ used to access protected endpoints
+- **1.2: auth/signin (POST)**
+  Used to sign in a user, requires a `username` field and a `password` field, both strings.
+  it returns a Json Web Token with a duration of _six hours_ used to access protected endpoints.
 
-**1.3: me (GET) (PROTECTED)**
-Used to get the logged-in user data. Providing a JWT on the `Authorization header`, with the
-following header-value structure: `Authorization: bearer [JWT]`
+- **1.3: auth/me (GET) (PROTECTED)**
+  Used to get the logged-in user data. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: bearer [JWT]`.
