@@ -10,7 +10,7 @@ Develop a task management backend application using Nest.js and TypeORM
 <li>[x] Show all tasks of a given username</li>
 <li>[ ] Change a task status between completed and pending</li>
 <li>[ ] Update a task's details</li>
-<li>[ ] Delete a task</li>
+<li>[x] Delete a task</li>
 </ul>
 
 **Additional Considerations**
@@ -59,6 +59,9 @@ Develop a task management backend application using Nest.js and TypeORM
   Used to get a list of all the tasks related to a given `username`. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`. This endpoint will only return you the list of tasks of the username if the given JWT corresponds to the user being consulted.
 
 - **2.3 tasks/create (POST) (PROTECTED)**
-  Used to create a new task for the logged in user. requires a `title` field and a `description` field, both strings.
+  Used to create a new task for the logged in user. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`. requires a `title` field and a `description` field, both strings
   `title` has to be between 4 and 45 characters.
   `description` has to be shorter than 501 characters.
+
+- **2.4 tasks/delete (POST) (PROTECTED)**
+  Used to delete a task. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`. requires an `id` field, corresponding to the task ID. This endpoint will only allow you to delete the selected task if the selected task belongs to the user id of the given JWT.
