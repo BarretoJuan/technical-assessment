@@ -67,7 +67,8 @@ Develop a task management backend application using Nest.js and TypeORM
 
   Returns a Json Web Token with a duration of _six hours_ used to access protected endpoints.
 
-- **1.3: auth/me (GET) (PROTECTED)**
+- **1.3: auth/me**
+
   **Method**: GET (PROTECTED)
 
   **CURL**:
@@ -80,11 +81,29 @@ Develop a task management backend application using Nest.js and TypeORM
 
 **2. Tasks Controller**
 
-- **2.1 tasks/find-tasks (GET) (PROTECTED)**
-  Used to get a list of all the tasks stored in the database. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`.
+- **2.1 tasks/find-tasks**
 
-- **2.2 tasks/find-tasks-by-username (POST) (PROTECTED)**
-  Used to get a list of all the tasks related to a given `username`. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`. This endpoint will only return you the list of tasks of the username if the given JWT corresponds to the user being consulted.
+  **Method**: GET (PROTECTED)
+
+  **CURL**:
+
+  ```
+  curl -X GET http://localhost:3000/tasks/find-tasks -H "Authorization: Bearer <yourJWT>"
+  ```
+
+  **Description**: Used to get a list of all the tasks stored in the database. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`.
+
+- **2.2 tasks/find-tasks-by-username**
+
+  **Method**: POST (PROTECTED)
+
+  **CURL**:
+
+  ```
+  curl -X POST http://localhost:3000/tasks/find-tasks-by-username -H "Authorization: Bearer <yourJWT>" -H "Content-Type: application/json" -d "{\"username\": \"<yourUsername>\"}"
+  ```
+
+  **Description**: Used to get a list of all the tasks related to a given `username`. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`. This endpoint will only return you the list of tasks of the username if the given JWT corresponds to the user being consulted.
 
 - **2.3 tasks/create (POST) (PROTECTED)**
   Used to create a new task for the logged in user. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`. requires a `title` field and a `description` field, both strings
