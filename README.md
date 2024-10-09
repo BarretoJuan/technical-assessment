@@ -65,3 +65,6 @@ Develop a task management backend application using Nest.js and TypeORM
 
 - **2.4 tasks/delete (POST) (PROTECTED)**
   Used to delete a task. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`. requires an `id` field, corresponding to the task ID. This endpoint will only allow you to delete the selected task if the selected task belongs to the user id of the given JWT.
+
+- **2.5 tasks/change-status (POST) (PROTECTED)**
+  Used to change the status of a task, changing between "Completada" and "Pendiente". Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`. requires an `id` field, corresponding to the task ID. This endpoint will only allow you to edit the selected task if the selected task belongs to the user id of the given JWT.

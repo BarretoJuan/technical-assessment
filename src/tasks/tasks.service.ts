@@ -111,4 +111,41 @@ export class TasksService {
     this.tasksRepository.delete(taskIdInt);
     return 'Tarea eliminada satisfactoriamente';
   }
+
+  async changeStatus(taskId: FindTaskDto, jwt_sub: string) {
+    let taskIdInt;
+    try {
+      taskIdInt = parseInt(taskId.id);
+    } catch {
+      throw new BadRequestException(
+        'El identificador de la tarea debe ser un numero',
+      );
+    }
+
+    if (!taskIdInt) {
+      throw new BadRequestException('Seleccione una tarea');
+    }
+
+    const task = await this.tasksRepository.findOne({
+      where: { id: taskIdInt },
+    });
+
+    if (!task) {
+      throw new UnauthorizedException('Tarea no encontrada');
+    }
+
+    if (task.userId != parseInt(jwt_sub)) {
+      throw new UnauthorizedException(
+        'Usted no está autorizado para cambiar el estado de esta tarea',
+      );
+    }
+
+    if (task.status === 'Pendiente') {
+      this.tasksRepository.update(taskIdInt, { status: 'Completada' });
+      return 'Estado de la tarea cambiado satisfactoriamente a completada';
+    } else {
+      this.tasksRepository.update(taskIdInt, { status: 'Pendiente' });
+      return 'Estado de la tarea cambiado satisfactoriamente a pendiente';
+    }
+  }
 }

@@ -51,6 +51,12 @@ export class TasksController {
     return this.tasksService.deleteTask(taskId, jwt_sub);
   }
 
+  @UseGuards(AuthGuard)
+  @Post('change-status')
+  changeStatus(@Body() taskId: FindTaskDto, @Request() req) {
+    const jwt_sub = req.user.sub;
+    return this.tasksService.changeStatus(taskId, jwt_sub);
+  }
   // @Get(':id')
   // findOne(@Param('id') id: string) {
   //   return this.tasksService.findOne(+id);
