@@ -169,3 +169,17 @@ Develop a task management backend application using Nest.js and TypeORM
   requires an `id`, `title`, and `description` fields.
 
   This endpoint will only allow you to edit the selected task if the selected task belongs to the user id of the given JWT.
+
+**Additional features**
+
+**AuthModule**
+
+The Auth Module comprises three endpoints: `signin`, `signup`, and `me`. This module allows us to register new users and log in existing users, generating a `JWT` (JSON Web Token) to be used in all protected endpoints through an Authorization Header. Additionally, the `me` endpoint can be used to retrieve the user information contained within the JWT The combination of the JWT library and the AuthGuard makes it possible to create endpoints that can only be accessed after logging in and having an active JWT.
+
+**Validation Pipe**
+
+The Validation Pipe was implemented along with the `class-validator` and `class-transformer` packages. This allows us to set up conditions through `decorators` to validate each field in a DTO, throwing exceptions when those conditions are not met. This is very useful for improving the maintainability of the codebase, as all the conditions to evaluate a specific type can be easily accessed, analyzed, and modified through the DTOs.
+
+**TypeORM Migrations**
+
+TypeORM migrations allow us to make changes to the database schema inside codebase entities and migrate those changes to the actual database server data model. This is a highly valuable feature because it makes it easier to maintain and develop changes to the data model, relieving the development team from the task of ensuring that both the TypeORM schema and the database data model are fully synchronized. On top of that, migrations allow us to keep a history of the changes made, so that if we ever need to roll back to a previous schema, we can easily revert the changes.
