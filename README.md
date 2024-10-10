@@ -114,7 +114,7 @@ Develop a task management backend application using Nest.js and TypeORM
   **CURL**:
 
   ```
-  curl -X POST http://localhost:3000/tasks/create -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsInVzZXJuYW1lIjoiSmFuZSBEb2UiLCJpYXQiOjE3Mjg1MDQ2NDIsImV4cCI6MTcyODUyNjI0Mn0.nacuvbg-6r6X3GCa1UqvfRqUM0cyVv3_5HOaVQi0vAw" -H "Content-Type: application/json" -d "{\"title\": \"Test6\", \"description\": \"testDescription\"}"
+  curl -X POST http://localhost:3000/tasks/create -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsInVzZXJuYW1lIjoiSmFuZSBEb2UiLCJpYXQiOjE3Mjg1MDQ2NDIsImV4cCI6MTcyODUyNjI0Mn0.nacuvbg-6r6X3GCa1UqvfRqUM0cyVv3_5HOaVQi0vAw" -H "Content-Type: application/json" -d "{\"title\": \"<taskTitle>\", \"description\": \"<taskDescription>\"}"
   ```
 
   **Description**: Used to create a new task for the logged in user. Providing a JWT on the `Authorization header`, with the following header-value structure: `Authorization: Bearer [JWT]`. requires a `title` field and a `description` field, both strings
