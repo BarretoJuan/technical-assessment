@@ -44,20 +44,6 @@ export class AuthService {
       throw new UnauthorizedException('Usuario inválido');
     }
 
-    // Check if username or password is too short/long
-    if (username.length < 4 || username.length > 45) {
-      throw new UnauthorizedException(
-        'El nombre de usuario debe tener entre 4 y 45 caracteres',
-      );
-    }
-
-    // Check if password is too short
-    if (givenPassword.length < 8 || givenPassword.length > 255) {
-      throw new UnauthorizedException(
-        'La contraseña debe tener entre 8 y 255 caracteres',
-      );
-    }
-    console.log('aaaa' + password);
     return this.userService.create({
       username,
       password,

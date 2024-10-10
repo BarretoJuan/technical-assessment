@@ -22,20 +22,6 @@ export class TasksService {
   ) {}
 
   createTask(createTaskDto: CreateTaskDto, jwt_sub: string) {
-    if (!createTaskDto.title) {
-      throw new NotAcceptableException('Ingrese un título');
-    }
-    if (createTaskDto.title.length < 4 || createTaskDto.title.length > 45) {
-      throw new NotAcceptableException(
-        'El título debe tener entre 4 y 45 caracteres',
-      );
-    }
-    if (createTaskDto.description && createTaskDto.description.length > 500) {
-      throw new NotAcceptableException(
-        'La descripción no puede tener más de 500 caracteres',
-      );
-    }
-
     try {
       this.tasksRepository.insert({
         ...createTaskDto,
@@ -44,7 +30,6 @@ export class TasksService {
     } catch {
       throw new BadRequestException('Error creando la tarea');
     }
-
     return 'Tarea creada satisfactoriamente';
   }
 
@@ -71,16 +56,8 @@ export class TasksService {
     return this.tasksRepository.find({ where: { userId: userId } });
   }
 
-  findOne(id: number) {
-    return `1This action returns a #${id} task`;
-  }
-
-  update(id: number, updateTaskDto: UpdateTaskDto) {
-    return `2This action updates a #${id} task`;
-  }
-
   async deleteTask(taskId: FindTaskDto, jwt_sub: string) {
-    let taskIdInt;
+    let taskIdInt: number;
     try {
       taskIdInt = parseInt(taskId.id);
     } catch {
@@ -173,18 +150,6 @@ export class TasksService {
     if (taskEntity.userId != parseInt(jwt_sub)) {
       throw new UnauthorizedException(
         'Usted no está autorizado para cambiar el estado de esta tarea',
-      );
-    }
-
-    if (task.title.length < 4 || task.title.length > 45) {
-      throw new NotAcceptableException(
-        'El título debe tener entre 4 y 45 caracteres',
-      );
-    }
-
-    if (task.description && task.description.length > 500) {
-      throw new NotAcceptableException(
-        'La descripción no puede tener más de 500 caracteres',
       );
     }
 

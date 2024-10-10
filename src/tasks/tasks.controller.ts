@@ -27,7 +27,6 @@ export class TasksController {
   @Post('find-tasks-by-username')
   findTaskByUsername(@Body() body: FindUserDto, @Request() req) {
     const jwt_sub = req.user.sub;
-    console.log('BBB ', jwt_sub);
 
     return this.tasksService.findTaskByUsername(body.username, jwt_sub);
   }
