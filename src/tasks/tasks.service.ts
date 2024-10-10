@@ -7,10 +7,9 @@ import {
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { Task } from './entities/task.entity';
-import { FindCursor, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../users/entities/user.entity';
-import { AuthController } from 'auth/auth.controller';
 import { FindTaskDto } from './dto/find-task-dto';
 
 @Injectable()
