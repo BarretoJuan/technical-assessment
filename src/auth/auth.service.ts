@@ -41,20 +41,20 @@ export class AuthService {
 
     // Check if user already exists
     if (user) {
-      throw new UnauthorizedException('User already exists');
+      throw new UnauthorizedException('Usuario inválido');
     }
 
     // Check if username or password is too short/long
     if (username.length < 4 || username.length > 45) {
       throw new UnauthorizedException(
-        'Username must be between 4 and 45 characters',
+        'El nombre de usuario debe tener entre 4 y 45 caracteres',
       );
     }
 
     // Check if password is too short
     if (givenPassword.length < 8 || givenPassword.length > 255) {
       throw new UnauthorizedException(
-        'Password must be between 8 and 255 characters',
+        'La contraseña debe tener entre 8 y 255 caracteres',
       );
     }
     console.log('aaaa' + password);

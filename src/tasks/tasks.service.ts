@@ -60,12 +60,12 @@ export class TasksService {
     });
     const userId = user?.id;
     if (!userId) {
-      throw new UnauthorizedException('User not found');
+      throw new UnauthorizedException('Usuario no encontrado');
     }
 
     if (jwt_sub != userId.toString()) {
       throw new UnauthorizedException(
-        'You are not authorized to view the tasks of this user',
+        'Usted no está autorizado para ver las tareas de este usuario',
       );
     }
 
